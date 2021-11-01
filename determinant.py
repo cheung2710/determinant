@@ -1,4 +1,3 @@
-# test
 def _get_list_of_slices(matrix: list[list[int]]) -> list[list[list[int]]]:
     """Returns a list of slices of a matrix. Used to find the determinant."""
     matrix = matrix[1:]
