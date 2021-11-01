@@ -1,11 +1,9 @@
 def _get_list_of_slices(matrix: list[list[int]]) -> list[list[list[int]]]:
-    """Returns a list of slices of a 2D array,
-    which can be used to find the determinant.
-    """
+    """Returns a list of slices of a matrix. Used to find the determinant."""
     matrix = matrix[1:]
     slice_list = []
 
-    # the outer loop adds each 2D slice to a list of all the slices
+    # the outer loop adds each 2D array to a list of all the slices
     for col in range(len(matrix[0])):
         matrix_slice = []
         # the inner loop creates a new 2D array, which includes everything
@@ -18,12 +16,16 @@ def _get_list_of_slices(matrix: list[list[int]]) -> list[list[list[int]]]:
 
 
 def determinant(matrix: list[list[int]]) -> int:
-    """Given a 2D array of ints representing a matrix,
-    returns the determinant.
+    """Given a 2D array representing a matrix, returns the determinant.
+    Assumes the matrix is square.
     """
     # base case: determinant([[a]]) = a
-    if len(matrix[0]) == 1:
+    if len(matrix) == 1:
         return matrix[0][0]
+
+    # doing this is much faster than using the next bit for 2x2 matrices
+    if len(matrix) == 2:
+        return (matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0])
 
     slice_list = _get_list_of_slices(matrix)
     det = 0
